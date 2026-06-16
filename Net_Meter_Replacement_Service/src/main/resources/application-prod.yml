@@ -1,0 +1,103 @@
+server:
+  port: 8080
+
+spring:
+
+  application:
+    name: Maitri-Solar-Net-To-Normal-Meter
+
+  datasource:
+
+    url: ${DB_URL_PROD}
+
+    username: ${DB_USERNAME_PROD}
+
+    password: ${DB_PASS_PROD}
+
+    driver-class-name: oracle.jdbc.OracleDriver
+
+    hikari:
+
+      maximum-pool-size: 20
+
+      minimum-idle: 5
+
+      connection-timeout: 30000
+
+      idle-timeout: 300000
+
+      max-lifetime: 1800000
+
+      leak-detection-threshold: 60000
+
+      pool-name: MaitriSolarHikariPool
+
+      connection-test-query: SELECT 1 FROM DUAL
+
+  jackson:
+    serialization:
+      indent-output: true
+
+  task:
+    execution:
+      pool:
+
+        core-size: 2
+
+        max-size: 5
+
+        queue-capacity: 100
+
+logging:
+
+  level:
+    "com.msedcl": DEBUG
+    "org.springframework": INFO
+    "com.zaxxer.hikari": INFO
+
+  pattern:
+
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+management:
+
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+
+  endpoint:
+    health:
+      show-details: always
+
+# API SECURITY
+api:
+
+  key: Prod_Maitri_Solar
+
+springdoc:
+
+  api-docs:
+
+    path: /v3/api-docs
+
+    enabled: false
+
+  swagger-ui:
+
+    path: /swagger-ui.html
+
+    enabled: false
+app:
+    isProd: Y
+soap:
+    ht:
+        url: http://10.10.130.73:8080/axis2/services/HtArrearsWebService
+    lt:
+        url: http://10.10.67.5:8081/billingservices/cbpdarrsws
+sms:
+   url: https://mse.tdots.in/api/pushsms
+   aid: msebapi
+   pin: 92BAdtQJexM6c
+   signature: MSEDCL
+   template-id: n300256
