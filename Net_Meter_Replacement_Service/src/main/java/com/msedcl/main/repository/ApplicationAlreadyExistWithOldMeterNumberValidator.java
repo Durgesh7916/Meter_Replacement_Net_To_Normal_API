@@ -21,13 +21,13 @@ public class ApplicationAlreadyExistWithOldMeterNumberValidator {
     	        "SELECT A.APPLICATION_ID_N, "
     	      + "A.ASSIGNED_CONSUMER_NO_C, "
     	      + "A.CURRENT_WORKFLOW_STATUS_C, "
-    	      + "B.OLD_METER_SR_NO, "
+    	      + "B.OLD_METRE_SR_NUMBER, "
     	      + "B.OLD_METER_METER_CODE "
     	      + "FROM NC_METER_REPLACE_APPLICATION A "
     	      + "JOIN NC_OLD_METER_READING B "
     	      + "ON A.APPLICATION_ID_N = B.APPLICATION_ID_N "
     	      + "WHERE A.ASSIGNED_CONSUMER_NO_C = ? "
-    	      + "AND B.OLD_METER_SR_NO = ? "
+    	      + "AND B.OLD_METRE_SR_NUMBER = ? "
     	      + "AND A.APPLN_SERVICE_TYPE_ID_N = '32' "
     	      + "AND A.STATUS_CD_C = 'A' "
     	      + "AND A.CURRENT_WF_STATUS_ID_N IN (31,33)";
@@ -55,7 +55,7 @@ public class ApplicationAlreadyExistWithOldMeterNumberValidator {
                             + ", Current Status = "
                             + rs.getString("CURRENT_WORKFLOW_STATUS_C")
                             + ", Old Meter SR No = "
-                            + rs.getString("OLD_METER_SR_NO")
+                            + rs.getString("OLD_METRE_SR_NUMBER")
                             + ", Old Meter Make Code = "
                             + rs.getString("OLD_METER_METER_CODE"));
             }
