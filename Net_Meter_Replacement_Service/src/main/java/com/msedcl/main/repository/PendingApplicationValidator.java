@@ -40,7 +40,7 @@ public class PendingApplicationValidator {
                             rs.getLong("APPLICATION_ID_N");
 
                     throw new IllegalArgumentException(
-                            "Meter Replacement Application Status. "
+                            "Meter Replacement Application Already Exist With Status. "
                             + "Application Id = "
                             + applicationId
                             + ",Current_Status = "
