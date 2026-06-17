@@ -89,10 +89,19 @@ public class ConsumerDetailsDto {
 
     @NotNull(message = "Reusable meter flag is required")
     private String reusableMeter;
-
+    
+    
    
 
-    public ConsumerDetailsDto() {
+    public String getAssessmentRequired() {
+		return assessmentRequired;
+	}
+
+	public void setAssessmentRequired(String assessmentRequired) {
+		this.assessmentRequired = assessmentRequired;
+	}
+
+	public ConsumerDetailsDto() {
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -222,16 +231,10 @@ public class ConsumerDetailsDto {
 		this.guaranteeEndDate = guaranteeEndDate;
 	}
 
-	public String getmentRequired() {
-		return mentRequired;
-	}
+	
 
-	public void setmentRequired(String mentRequired) {
-		this.mentRequired = mentRequired;
-	}
-
-	@NotNull(message = "ment required flag is required")
-    private String mentRequired;
+	@NotNull(message = "assessment required flag is required should be N (No)")
+    private String assessmentRequired;
 
     @NotBlank(message = "Section is required")
     private String sectionId;
