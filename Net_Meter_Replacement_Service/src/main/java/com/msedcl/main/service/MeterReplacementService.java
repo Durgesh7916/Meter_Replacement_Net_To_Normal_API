@@ -42,6 +42,7 @@ import com.msedcl.main.dao.OldMeterReadingDao;
 import com.msedcl.main.dto.MeterReplacementRequestDto;
 import com.msedcl.main.dto.MeterReplacementResponseDto;
 import com.msedcl.main.dto.OfficeDetailsDto;
+import com.msedcl.main.repository.ApplicationAlreadyExistWithOldMeterNumberValidator;
 import com.msedcl.main.repository.ConsumerExistsValidator;
 import com.msedcl.main.repository.PendingApplicationValidator;
 
@@ -373,6 +374,14 @@ public class MeterReplacementService {
             PendingApplicationValidator.validate(
                     dataSource,
                     request.getConsumerDetails().getConsumerNumber());
+            
+            ApplicationAlreadyExistWithOldMeterNumberValidator
+            .validate(
+                    dataSource,
+                    request.getConsumerDetails()
+                           .getConsumerNumber(),
+                    request.getConsumerDetails()
+                           .getSerialNumber());
 
 			/*
 			 * String oldMeterNo = OldMeterValidator.validate( dataSource,
