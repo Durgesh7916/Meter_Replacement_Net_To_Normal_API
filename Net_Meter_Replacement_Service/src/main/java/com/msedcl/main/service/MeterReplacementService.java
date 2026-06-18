@@ -23,6 +23,7 @@ import com.msedcl.main.Master.validation.MeterSubTypeValidatorMaster;
 import com.msedcl.main.Billing.validation.MeterTypePhaseInstallationTypeValidatorBilling;
 import com.msedcl.main.Master.validation.MeterTypePhaseInstallationTypeValidatorMaster;
 import com.msedcl.main.Billing.validation.MeterValidationBilling;
+import com.msedcl.main.Billing.validation.NonTodDigitValidatorBilling;
 import com.msedcl.main.Billing.validation.NonTodReadingValidatorBilling;
 import com.msedcl.main.Billing.validation.OfficeDetailsLoaderBilling;
 import com.msedcl.main.Billing.validation.ReplacementDateValidatorBilling;
@@ -333,11 +334,31 @@ public class MeterReplacementService {
                         request.getConsumerDetails().getConsumerNumber(),
                         request.getNonTodReading().getImportFinalReadingKwh(),
                         request.getNonTodReading().getExportFinalReadingKwh());
+                
+                NonTodDigitValidatorBilling.validate(
+                        dataSource,
+                        request.getConsumerDetails()
+                               .getConsumerNumber(),
+                        request.getNonTodReading());
             }
         	
             if("71".equals(
                     request.getConsumerDetails()
                            .getInstallationType())) {
+            	
+            	   MeterReadingValidator.validate(
+                           request.getImportReading(),
+                           "Import");
+
+                   MeterReadingValidator.validate(
+                           request.getExportReading(),
+                           "Export");
+                   
+                   DigitValidatorBilling.validate(
+                           dataSource,
+                           request.getConsumerDetails().getConsumerNumber(),
+                           request.getImportReading(),
+                           request.getExportReading());
             TodImportReadingValidatorBilling.validate(
                     dataSource,
                     request.getConsumerDetails().getConsumerNumber(),
@@ -346,21 +367,12 @@ public class MeterReplacementService {
                     dataSource,
                     request.getConsumerDetails().getConsumerNumber(),
                     request.getExportReading());
+            
             }
             
-            MeterReadingValidator.validate(
-                    request.getImportReading(),
-                    "Import");
-
-            MeterReadingValidator.validate(
-                    request.getExportReading(),
-                    "Export");
+         
             
-            DigitValidatorBilling.validate(
-                    dataSource,
-                    request.getConsumerDetails().getConsumerNumber(),
-                    request.getImportReading(),
-                    request.getExportReading());
+            
             
             LtHtCodeValidatorBilling.validate(
                     dataSource,
