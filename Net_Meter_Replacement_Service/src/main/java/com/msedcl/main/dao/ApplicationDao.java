@@ -44,7 +44,8 @@ public class ApplicationDao {
                 + "AMISP_AGENCY_NAME,"
                 + "AMISP_OLD_MTR_RDNG_USING_OCR_FLAG_YN,"
                 + "OLD_MTR_RDNG_USING_CMRI_FLAG_YN,"
-                + "METER_PHASE_ID_N"
+                + "METER_PHASE_ID_N,"
+                + "SMART_NET_TO_SMART_NORMAL_FLAG_YN"
                 
                 + ") VALUES ("
                 + "SEQ_NC_APPLICATION.NEXTVAL,"
@@ -73,7 +74,8 @@ public class ApplicationDao {
                 + "?,"
                 + "?,"
                 + "?,"
-                + "?)";
+                + "?,"
+                +"?)";
         
         
         
@@ -247,7 +249,7 @@ public class ApplicationDao {
 
 
 
-            
+            ps.setString(23, request.getConsumerDetails().getSmartNetToSmartNormalFlagYn());
             
             
             ps.executeUpdate();

@@ -4,7 +4,7 @@ server:
 spring:
 
   application:
-    name: Maitri-Solar-Net-To-Normal-Meter
+    name: Solar-Net-To-Normal-Meter
 
   datasource:
 

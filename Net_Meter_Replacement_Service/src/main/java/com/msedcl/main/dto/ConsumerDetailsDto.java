@@ -286,6 +286,21 @@ public class ConsumerDetailsDto {
     @NotBlank(message = "Updated By is required")
     private String updatedBy;
 
+    @NotBlank(message = "SMART_NET_TO_SMART_NORMAL_FLAG_YN is mandatory")
+    @Pattern(
+        regexp = "[Yy]",
+        message = "SMART_NET_TO_SMART_NORMAL_FLAG_YN must be Y"
+    )
+    private String smartNetToSmartNormalFlagYn;
+    
+	public String getSmartNetToSmartNormalFlagYn() {
+		return smartNetToSmartNormalFlagYn;
+	}
+
+	public void setSmartNetToSmartNormalFlagYn(String smartNetToSmartNormalFlagYn) {
+		this.smartNetToSmartNormalFlagYn = smartNetToSmartNormalFlagYn;
+	}
+
 	public String getAmispAgencyId() {
 		return amispAgencyId;
 	}
