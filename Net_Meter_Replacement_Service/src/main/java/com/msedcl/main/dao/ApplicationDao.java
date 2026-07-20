@@ -249,7 +249,7 @@ public class ApplicationDao {
 
 
 
-            ps.setString(23, request.getConsumerDetails().getSmartNetToSmartNormalFlagYn());
+            ps.setString(23, request.getConsumerDetails().getSmartNetToSmartNormalFlagYn().toUpperCase());
             
             
             ps.executeUpdate();
