@@ -19,7 +19,7 @@ public class ReplacementReasonValidatorMaster {
                 "SELECT REPLACMENT_REASON_CD_C " +
                 "FROM NC_METER_REPLACEMENT_REASON " +
                 "WHERE UPPER(REPLACMENT_REASON_CD_C) = UPPER(?) " +
-                "AND STATUS_CD_C = 'A' AND UPPER(REPLACMENT_REASON_CD_C)='2' ";
+                "AND STATUS_CD_C = 'A' AND UPPER(REPLACMENT_REASON_CD_C)='18' ";
 
         try (
                 Connection con = dataSource.getConnection();
@@ -35,7 +35,7 @@ public class ReplacementReasonValidatorMaster {
                     throw new IllegalArgumentException(
                             "Replacement Reason '"
                                     + replacementReason
-                                    + "' not found in master. OR Only Allowed Consumer Request Reason(2)");
+                                    + "' not found in master. OR Only Allowed Changed to Smart Meter(18)");
                 }
             }
 
