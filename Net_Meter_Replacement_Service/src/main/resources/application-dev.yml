@@ -86,7 +86,7 @@ springdoc:
 
 api:
 
-  key: MAITRI_TEST_SECRET_KEY
+  key: AMISP_TEST_SECRET_KEY
 
 app:
   isProd: N

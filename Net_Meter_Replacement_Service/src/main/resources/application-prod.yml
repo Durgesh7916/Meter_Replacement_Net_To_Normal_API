@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8081
 
 spring:
 
@@ -73,7 +73,7 @@ management:
 # API SECURITY
 api:
 
-  key: Prod_Maitri_Solar
+  key: Prod_Smart_Net_To_Normal_Smart
 
 springdoc:
 
