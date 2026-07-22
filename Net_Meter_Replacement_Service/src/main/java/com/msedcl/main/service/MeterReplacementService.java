@@ -271,6 +271,9 @@ public class MeterReplacementService {
                     request.getConsumerDetails().getInstallationType(),
                     replacementDate);
             
+            
+           
+            
             DateValidator.validateReplacementDate(
                     request.getConsumerDetails()
                            .getReplacementDate());
@@ -399,39 +402,69 @@ public class MeterReplacementService {
 			 * String oldMeterNo = OldMeterValidator.validate( dataSource,
 			 * request.getConsumerDetails().getConsumerNumber());
 			 */
-            try (Connection conn2 = dataSource.getConnection()) {
-
-                conn2.setAutoCommit(false);
-
-                try {
-
-                    Long applicationId =
-                            ApplicationDao.createApplication(
-                                    conn,
-                                    request);
-
-                    OldMeterReadingDao.insert(
-                            conn,
-                            applicationId,
-                            request.getConsumerDetails().getSerialNumber(),
-                            request);
-
-                    conn2.commit();
-
-                    return "Application Created Successfully. Application Id = "
-                            + applicationId;
-
-                } catch (Exception e) {
-
-                    conn.rollback();
-
-                    return "ERROR: " + e.getMessage();
-                }
-            }
+			/*
+			 * try (Connection conn2 = dataSource.getConnection()) {
+			 * 
+			 * conn2.setAutoCommit(false);
+			 * 
+			 * try {
+			 * 
+			 * Long applicationId = ApplicationDao.createApplication( conn, request);
+			 * 
+			 * OldMeterReadingDao.insert( conn, applicationId,
+			 * request.getConsumerDetails().getSerialNumber(), request);
+			 * 
+			 * conn2.commit();
+			 * 
+			 * return "Application Created Successfully. Application Id = " + applicationId;
+			 * 
+			 * } catch (Exception e) {
+			 * 
+			 * conn.rollback();
+			 * 
+			 * return "ERROR: " + e.getMessage(); } }
+			 */
             
-          //  return "Validation successful";
+            //return "Validation successful";
 
             //return "SUCCESS";
+            
+            conn.setAutoCommit(false);
+
+            try {
+
+                Long applicationId =
+                        ApplicationDao.createApplication(
+                                conn,
+                                request);
+
+                OldMeterReadingDao.insert(
+                        conn,
+                        applicationId,
+                        request.getConsumerDetails().getSerialNumber(),
+                        request);
+
+                // Commit both inserts
+                conn.commit();
+
+                return "Application Created Successfully. Application Id = "
+                        + applicationId;
+
+            } catch (Exception e) {
+
+                // Rollback both inserts
+                conn.rollback();
+
+                e.printStackTrace();
+
+                return "ERROR: " + e.getMessage();
+
+            } finally {
+
+                // Restore auto-commit (optional but recommended)
+                conn.setAutoCommit(true);
+
+            }
 
         } catch (Exception e) {
 

@@ -87,7 +87,7 @@
     </dependencies>
 
     <build>
-    <finalName>Solar-Net-To-Normal-Meter</finalName>
+    <finalName>Smart-Net-To-Smart-Normal-Conversion</finalName>
         <plugins>
 
             <plugin>

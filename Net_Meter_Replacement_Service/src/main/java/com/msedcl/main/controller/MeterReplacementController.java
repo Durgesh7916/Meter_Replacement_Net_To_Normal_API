@@ -27,7 +27,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/Solar/Net-To-Normal-Meter")
+@RequestMapping("/Smart-Net-To-Smart-Normal-Conversion")
 @RequiredArgsConstructor
 public class MeterReplacementController {
 

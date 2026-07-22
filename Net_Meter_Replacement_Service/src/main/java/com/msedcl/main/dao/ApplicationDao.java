@@ -3,6 +3,8 @@ package com.msedcl.main.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import com.msedcl.main.dto.MeterReplacementRequestDto;
 
@@ -168,11 +170,19 @@ public class ApplicationDao {
             ps.setLong(7, consCatgId);
             
             
-            ps.setString(
-                    8,
-                    request.getConsumerDetails()
-                           .getReplacementDate());
+            DateTimeFormatter formatter =
+                    DateTimeFormatter.ofPattern("dd-MM-yyyy");
+
+            LocalDate replacementDate =
+                    LocalDate.parse(
+                            request.getConsumerDetails().getReplacementDate(),
+                            formatter);
+            ps.setDate(8,
+                    java.sql.Date.valueOf(replacementDate));
             
+			/*
+			 * ps.setString( 8, request.getConsumerDetails() .getReplacementDate());
+			 */
             
             ps.setString(
                     9,
